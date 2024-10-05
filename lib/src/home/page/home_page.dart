@@ -21,7 +21,6 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Campo para inserção do CEP
             TextField(
               controller: cepController,
               decoration: InputDecoration(
@@ -31,19 +30,16 @@ class HomePage extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
             SizedBox(height: 16),
-            // Botão para buscar o endereço
             ElevatedButton(
               onPressed: () async {
                 final cep = cepController.text;
                 if (cep.isNotEmpty) {
-                  await controller.fetchAddress(cep); // Busca o endereço
-                  await controller.addressService.localStorageRepository.saveAddress(cep); // Salva o CEP no histórico
+                  await controller.fetchAddress(cep); 
                 }
               },
               child: Text('Buscar Endereço'),
             ),
             SizedBox(height: 16),
-            // Exibição dos dados do endereço
             Observer(
               builder: (_) {
                 if (controller.address != null) {
@@ -63,10 +59,9 @@ class HomePage extends StatelessWidget {
               },
             ),
             SizedBox(height: 16),
-            // Botão para navegar para a página de histórico
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.history); // Navega para a página de histórico
+                Navigator.pushNamed(context, AppRoutes.history); 
               },
               child: Text('Ver Histórico de Endereços'),
             ),
